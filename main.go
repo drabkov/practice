@@ -8,7 +8,11 @@ import (
 
 func main() {
 	fmt.Println("task 1 :")
-	arrayfill.PrintArray(arrayfill.FillArray(5))
+	arrayfill.PrintArray(arrayfill.FillArray(arrayfill.CreateArray(5)))
+
 	fmt.Println("task 2 :")
-	throwdice.ThrowDice(1000)
+	m := throwdice.ThrowDice(1000)
+	for i, v := range m {
+		fmt.Printf("%d - %2.1f %%\n", i, float64(v)/float64(1000)*100)
+	}
 }
