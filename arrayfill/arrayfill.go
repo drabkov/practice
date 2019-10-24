@@ -2,34 +2,27 @@ package arrayfill
 
 import "fmt"
 
-func CreateArray(size int) [][]string {
+func CreateArray(size int, symbol string) [][]string {
 	a := make([][]string, size)
 	for i := 0; i < size; i++ {
 		a[i] = make([]string, size)
+		for j := 0; j < size; j++ {
+			a[i][j] = symbol
+		}
 	}
 	return a
 }
 
-func FillArray(a [][]string, symbol string) [][]string {
+func FillDiagonals(a [][]string, symbol string) [][]string {
 	size := len(a)
 	for i := 0; i < size; i++ {
-		a[i] = make([]string, size)
-		a[i][i] = symbol
-		a[i][size-1-i] = symbol
+		a[i][i], a[i][size-1-i] = symbol, symbol
 	}
 	return a
 }
 
 func PrintArray(a [][]string) {
 	for _, v := range a {
-		for _, f := range v {
-			if f == "" {
-				fmt.Print("0")
-			} else {
-				fmt.Print(f)
-			}
-			fmt.Print(" ")
-		}
-		fmt.Println("")
+		fmt.Println(v)
 	}
 }
