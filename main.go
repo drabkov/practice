@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"practice/arrayfill"
 	"practice/throwdice"
+	"sort"
 )
 
 func main() {
@@ -17,7 +18,14 @@ func main() {
 	for i := 0; i < numberShots; i++ {
 		m[throwdice.RandInt()+throwdice.RandInt()] += 1
 	}
-	for i, v := range m {
-		fmt.Printf("%d - %2.1f %%\n", i, float64(v)/float64(numberShots)*100)
+
+	var keys []int
+	for k := range m {
+		keys = append(keys, k)
+	}
+	sort.Ints(keys)
+
+	for _, k := range keys {
+		fmt.Printf("%d - %2.1f %%\n", k, float64(m[k])/float64(numberShots)*100)
 	}
 }
