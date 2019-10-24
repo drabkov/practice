@@ -16,7 +16,7 @@ func main() {
 	m := make(map[int]int)
 
 	for i := 0; i < numberShots; i++ {
-		m[throwdice.RandInt()+throwdice.RandInt()] += 1
+		m[throwdice.RandInt()+throwdice.RandInt()]++
 	}
 
 	var keys []int
