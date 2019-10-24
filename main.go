@@ -8,7 +8,7 @@ import (
 
 func main() {
 	fmt.Println("task 1 :")
-	arrayfill.PrintArray(arrayfill.FillArray(arrayfill.CreateArray(5)))
+	arrayfill.PrintArray(arrayfill.FillArray(arrayfill.CreateArray(5), "1"))
 
 	fmt.Println("task 2 :")
 	m := throwdice.ThrowDice(1000)
