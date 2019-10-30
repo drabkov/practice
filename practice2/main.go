@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"practice2/list"
+	"practice2/mylist"
 )
 
 func main() {
-	collection := list.Collection{}
+	collection := mylist.Collection{}
 	for i := 0; i < 10; i++ {
 		collection.Add(i)
 	}

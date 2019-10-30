@@ -1,6 +1,8 @@
-package list
+package mylist
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Collection struct {
 	first *Element

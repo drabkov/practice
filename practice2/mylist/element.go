@@ -1,4 +1,4 @@
-package list
+package mylist
 
 type Element struct {
 	value int
