@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
+	"practice/arrayfill"
 	"practice/list"
-	/*"practice/arrayfill"
 	"practice/throwdice"
-	"sort"*/)
+	"sort"
+)
 
-/*func main() {
+func task1() {
 	fmt.Println("task 1 :")
 	arrayfill.PrintArray(arrayfill.FillDiagonals(arrayfill.CreateArray(5, "0"), "1"))
 
@@ -28,7 +29,7 @@ import (
 	for _, k := range keys {
 		fmt.Printf("%d - %2.1f %%\n", k, float64(m[k])/float64(numberShots)*100)
 	}
-}*/
+}
 
 func main() {
 	collection := list.Collection{}
@@ -38,9 +39,8 @@ func main() {
 	collection.Print()
 	collection.Remove(4)
 	collection.Print()
-	fmt.Println(collection.Get(4))
+	fmt.Println(collection.Get(3))
 	fmt.Println(collection.First())
 	fmt.Println(collection.Last())
 	fmt.Println(collection.Length())
-	fmt.Println(collection.Get(9).Next())
 }

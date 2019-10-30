@@ -15,11 +15,19 @@ type Element struct {
 }
 
 func (e *Element) Next() *Element {
-	return e.next
+	if e != nil {
+		return e.next
+	} else {
+		return nil
+	}
 }
 
 func (e *Element) Prev() *Element {
-	return e.prev
+	if e != nil {
+		return e.prev
+	} else {
+		return nil
+	}
 }
 
 func (e *Element) Value() int {
