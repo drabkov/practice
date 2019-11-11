@@ -11,14 +11,21 @@ type Bot interface {
 	SayCurrentDate()
 	SayCurrentDayOfWeek()
 	SayBye()
+	GetLanguage() string
 }
 
 type EnglishBot struct {
-	Name string
+	Name     string
+	Language string
 }
 
 type RussianBot struct {
-	Name string
+	Name     string
+	Language string
+}
+
+func (b *EnglishBot) GetLanguage() string {
+	return b.Language
 }
 
 func (b *EnglishBot) SayHello() {
@@ -45,6 +52,10 @@ func (b *EnglishBot) SayCurrentDayOfWeek() {
 
 func (b *EnglishBot) SayBye() {
 	fmt.Printf("%s: Bye\n", b.Name)
+}
+
+func (b *RussianBot) GetLanguage() string {
+	return b.Language
 }
 
 func (b *RussianBot) SayHello() {
