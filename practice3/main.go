@@ -12,32 +12,34 @@ func main() {
 	for !(strings.ToLower(language) == "english" || strings.ToLower(language) == "russian") {
 		fmt.Print("Language : ")
 		_, err := fmt.Scanln(&language)
-		fmt.Println(err)
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 
-	myBot := createBot(language)
-
-	listener(myBot)
+	listener(createBot(language))
 }
 
 func listener(myBot mybot.Bot) {
 	var req string
 
-	for strings.ToLower(req) != "5" {
-		fmt.Print("You : ")
+	for !(strings.ToLower(req) == "5" || strings.ToLower(req) == "пока" || strings.ToLower(req) == "bye") {
+		fmt.Print("You: ")
 		_, err := fmt.Scanln(&req)
-		fmt.Println(err)
+		if err != nil {
+			fmt.Println(err)
+		}
 
-		switch {
-		case strings.ToLower(req) == "1":
+		switch strings.ToLower(req) {
+		case "1", "привет", "hello":
 			myBot.SayHello()
-		case strings.ToLower(req) == "2":
+		case "2", "время", "time":
 			myBot.SayCurrentTime()
-		case strings.ToLower(req) == "3":
+		case "3", "дата", "date":
 			myBot.SayCurrentDate()
-		case strings.ToLower(req) == "4":
+		case "4", "день", "day":
 			myBot.SayCurrentDayOfWeek()
-		case strings.ToLower(req) == "5":
+		case "5", "пока", "bye":
 			myBot.SayBye()
 		}
 	}

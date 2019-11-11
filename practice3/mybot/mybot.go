@@ -22,7 +22,7 @@ type RussianBot struct {
 }
 
 func (b *EnglishBot) SayHello() {
-	fmt.Println("Hello, I am " + b.Name)
+	fmt.Printf("%s: Hello, I am %s\n", b.Name, b.Name)
 }
 
 func (b *EnglishBot) SayCurrentTime() {
@@ -30,7 +30,7 @@ func (b *EnglishBot) SayCurrentTime() {
 	t := time.Now()
 	loc, _ := time.LoadLocation(name)
 	t = t.In(loc)
-	fmt.Printf(b.Name, "%s: Now is", t.Format("15:04:02"))
+	fmt.Printf(b.Name, "%s: Now is", t.Format("15:04"))
 }
 
 func (b *EnglishBot) SayCurrentDate() {
