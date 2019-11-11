@@ -10,7 +10,7 @@ func main() {
 	var language string
 
 	for !(strings.ToLower(language) == "english" || strings.ToLower(language) == "russian") {
-		fmt.Print("Language : ")
+		fmt.Print("Language: ")
 		_, err := fmt.Scanln(&language)
 		if err != nil {
 			fmt.Println(err)
