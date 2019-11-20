@@ -14,7 +14,7 @@ func main() {
 		fmt.Println(err)
 	}
 
-	m := &mymeteo.Meterologist{}
+	m := &mymeteo.Meteorologist{}
 	w := m.WeatherForecast(city)
 
 	fmt.Printf("Сегодня в городе %s %s,", city, w.GetCloudiness())
