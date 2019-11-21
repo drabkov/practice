@@ -2,7 +2,6 @@ package mymeteo
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -35,15 +34,31 @@ func (m *Meteorologist) WeatherForecast(city string) *Weather {
 	w0 := w[0].(map[string]interface{})
 	wind := dat["wind"].(map[string]interface{})
 	sys := dat["sys"].(map[string]interface{})
-	fmt.Println(int(t["humidity"].(float64)))
 
 	gust := 0
 	if wind["gust"] != nil {
 		gust = int(wind["gust"].(float64))
 	}
+
 	derection := ""
-	if wind["direction"] != nil {
-		derection = wind["direction"].(string)
+	deg := wind["deg"].(float64)
+	switch {
+	case deg == 0 || deg == 360:
+		derection = "северный"
+	case deg > 0 || deg < 90:
+		derection = "северовосточный"
+	case deg == 90:
+		derection = "восточный"
+	case deg > 90 || deg < 180:
+		derection = "юго-восточный"
+	case deg == 180:
+		derection = "южный"
+	case deg > 180 || deg < 270:
+		derection = "юго-западный"
+	case deg == 270:
+		derection = "западный"
+	case deg > 270 || deg < 360:
+		derection = "северо-западный"
 	}
 
 	weather := &Weather{
@@ -55,8 +70,8 @@ func (m *Meteorologist) WeatherForecast(city string) *Weather {
 		Speed:       int(wind["speed"].(float64)),
 		Gust:        gust,
 		Direction:   derection,
-		Sunrise:     sys["sunrise"].(float64),
-		Sunset:      sys["sunset"].(float64),
+		Sunrise:     int64(sys["sunrise"].(float64)),
+		Sunset:      int64(sys["sunset"].(float64)),
 	}
 
 	return weather
@@ -71,8 +86,8 @@ type Weather struct {
 	Speed       int     `json:"speed"`
 	Gust        int     `json:"gust"`
 	Direction   string  `json:"direction"`
-	Sunrise     float64 `json:"sunrise"`
-	Sunset      float64 `json:"sunset"`
+	Sunrise     int64   `json:"sunrise"`
+	Sunset      int64   `json:"sunset"`
 }
 
 func (w *Weather) GetTemperature() (temp float64, tempMin float64, tempMax float64) {

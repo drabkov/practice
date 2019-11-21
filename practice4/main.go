@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"practice4/mymeteo"
+	"time"
 )
 
 func main() {
@@ -17,12 +18,12 @@ func main() {
 	m := &mymeteo.Meteorologist{}
 	w := m.WeatherForecast(city)
 
-	temp, _, _ := w.GetTemperature()
+	t, _, _ := w.GetTemperature()
 	speed, gust, direction := w.GetWind()
 
 	fmt.Printf("Сегодня в городе %s %s,\n", city, w.GetCloudiness())
-	fmt.Printf("температура воздуха %v °С,\n", temp)
+	fmt.Printf("температура воздуха %v °С,\n", t)
 	fmt.Printf("ветер %v %v м/с с порывами до %v м/с.\n", direction, speed, gust) 
-	fmt.Printf("Влажность воздуха %s.\n", string(w.GetHumidity()))
-	fmt.Printf("Восход солнца %v, заход солнца %v.\n", w.Sunrise, w.Sunset)
+	fmt.Printf("Влажность воздуха %d %%.\n", w.GetHumidity())
+	fmt.Printf("Восход солнца %v, заход солнца %v.\n", time.Unix(w.Sunrise, 0), time.Unix(w.Sunset, 0))
 }
