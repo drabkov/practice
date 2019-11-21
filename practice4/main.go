@@ -21,9 +21,9 @@ func main() {
 	t, _, _ := w.GetTemperature()
 	speed, gust, direction := w.GetWind()
 
-	fmt.Printf("Сегодня в городе %s %s,\n", city, w.GetCloudiness())
+	fmt.Printf("Сегодня в городе %s %s,", city, w.GetCloudiness())
 	fmt.Printf("температура воздуха %v °С,\n", t)
-	fmt.Printf("ветер %v %v м/с с порывами до %v м/с.\n", direction, speed, gust) 
+	fmt.Printf("ветер %v %v м/с с порывами до %v м/с. \n", direction, speed, gust) 
 	fmt.Printf("Влажность воздуха %d %%.\n", w.GetHumidity())
-	fmt.Printf("Восход солнца %v, заход солнца %v.\n", time.Unix(w.Sunrise, 0), time.Unix(w.Sunset, 0))
+	fmt.Printf("Восход солнца %v, заход солнца %v.\n", time.Unix(w.Sunrise, 0).Format("15:04"), time.Unix(w.Sunset, 0).Format("15:04"))
 }
