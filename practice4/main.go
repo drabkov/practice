@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	var city string = "Mahilyow"
+	var city string
 
 	fmt.Print("City: ")
 	_, err := fmt.Scanln(&city)
@@ -25,5 +25,5 @@ func main() {
 	fmt.Printf("температура воздуха %v °С,\n", t)
 	fmt.Printf("ветер %v %v м/с с порывами до %v м/с. \n", direction, speed, gust) 
 	fmt.Printf("Влажность воздуха %d %%.\n", w.GetHumidity())
-	fmt.Printf("Восход солнца %v, заход солнца %v.\n", time.Unix(w.Sunrise, 0).Format("15:04"), time.Unix(w.Sunset, 0).Format("15:04"))
+	fmt.Printf("Восход солнца %v, заход солнца %v.\n", time.Unix(w.Sys.Sunrise, 0).Format("15:04"), time.Unix(w.Sys.Sunset, 0).Format("15:04"))
 }
