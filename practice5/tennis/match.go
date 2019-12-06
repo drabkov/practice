@@ -9,16 +9,20 @@ type Match struct {
 
 func (m *Match) Start() {
 
-	var win string
+	var winer string
 
-	ch := make(chan int)
+	ch := make(chan string)
+	ch <- ""
 
 	fmt.Println("Match start.")
-	go func() { win = m.Player1.Play(ch) }()
 
-	go func() { win = m.Player1.Play(ch) }()
+	go func() { 
+		m.Player1.Play(ch) 
+		winer,_ = <-ch}()
 
-	fmt.Println(win)
-	fmt.Println("Match finish.")
+	go func() { 
+		m.Player2.Play(ch) 
+		winer,_ = <-ch}()
 
+	fmt.Println("Match finish. Winer is " + winer)
 }

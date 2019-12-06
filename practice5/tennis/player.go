@@ -10,22 +10,16 @@ type Player struct {
 	Skill int
 }
 
-func (p *Player) Play(ch chan int) string {
-	var win string
+func (p *Player) Play(ch chan string) {
+	_, ok := <-ch
 
-	ball, ok := <-ch
-
-	if !ok {
-		win = "Win player " + p.Name
+	if ok {
+		if p.Skill < rand.Intn(10) {
+			close(ch)
+		} else {
+			ch <- p.Name
+		}
 	}
-
-	if p.Skill < rand.Intn(10) {
-		close(ch)
-	} else {
-		ch <- ball
-	}
-
-	return win
 }
 
 func init() {
