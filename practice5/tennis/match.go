@@ -1,6 +1,9 @@
 package tennis
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 type Match struct {
 	Player1 *Player
@@ -9,20 +12,27 @@ type Match struct {
 
 func (m *Match) Start() {
 
-	var winer string
+	var wg sync.WaitGroup
+	wg.Add(3)
 
 	ch := make(chan string)
-	ch <- ""
+	go func() {
+		ch <- "ball"
+		wg.Done()
+	}()
 
 	fmt.Println("Match start.")
 
-	go func() { 
-		m.Player1.Play(ch) 
-		winer,_ = <-ch}()
+	go func() {
+		m.Player1.Play(ch)
+		wg.Done()
+	}()
 
-	go func() { 
-		m.Player2.Play(ch) 
-		winer,_ = <-ch}()
+	go func() {
+		m.Player2.Play(ch)
+		wg.Done()
+	}()
 
-	fmt.Println("Match finish. Winer is " + winer)
+	wg.Wait()
+	//fmt.Printf("Match finish. Winner is %v\n", <-ch)
 }

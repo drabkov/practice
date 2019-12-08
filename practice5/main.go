@@ -1,6 +1,8 @@
 package main
 
-import "practice5/tennis"
+import (
+	"practice5/tennis"
+)
 
 func main() {
 
