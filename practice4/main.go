@@ -29,9 +29,8 @@ func main() {
 
 	dw := m.DailyForecast(city, 7)
 
-	fmt.Println("Изменение температуры в ", city, " на следующие 5 дней.")
-	for v := range dw.List {
-		fmt.Println(v)
-		//fmt.Println(time.Unix(v.Dt, 0).Format("01.01.2001"), " - " +  v.Main.Temp)	
+	fmt.Println("Изменение температуры в ", city, " на следующие 5 дней каждые три часа.")
+	for _, v := range dw.List {
+		fmt.Println(time.Unix(int64(v.Dt), 0), " - " ,  v.Main.Temp)	
 	}
 }
