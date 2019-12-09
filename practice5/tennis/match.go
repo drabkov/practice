@@ -16,6 +16,7 @@ func (m *Match) Start() {
 	wg.Add(3)
 
 	ch := make(chan string)
+
 	go func() {
 		ch <- "ball"
 		wg.Done()
@@ -34,5 +35,5 @@ func (m *Match) Start() {
 	}()
 
 	wg.Wait()
-	//fmt.Printf("Match finish. Winner is %v\n", <-ch)
+	fmt.Printf("Match finish. Winner is %v\n", <-ch)
 }

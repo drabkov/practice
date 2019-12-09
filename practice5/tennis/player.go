@@ -12,7 +12,6 @@ type Player struct {
 
 func (p *Player) Play(ch chan string) {
 	_, ok := <-ch
-
 	if ok {
 		if p.Skill < rand.Intn(10) {
 			close(ch)
