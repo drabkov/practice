@@ -11,5 +11,7 @@ func main() {
 
 	m := tennis.Match{p1, p2}
 
-	m.Start();
+	for i := 0; i < 20; i++ {
+		m.Start()
+	}
 }

@@ -10,13 +10,18 @@ type Player struct {
 	Skill int
 }
 
-func (p *Player) Play(ch chan string) {
-	_, ok := <-ch
-	if ok {
-		if p.Skill < rand.Intn(10) {
-			close(ch)
+func (p *Player) Play(ch chan string, winner chan string) {
+	for {
+		_, ok := <-ch
+
+		if ok {
+			if p.Skill < rand.Intn(10) {
+				close(ch)
+			} else {
+				ch <- "ball"
+			}
 		} else {
-			ch <- p.Name
+			winner <- p.Name
 		}
 	}
 }
