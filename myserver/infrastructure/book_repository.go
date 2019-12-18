@@ -89,9 +89,12 @@ func GetBookByID(id primitive.ObjectID) (*domain.Book, error) {
 
 	// We create filter.
 	filter := bson.M{"_id": id}
-	err := collection.FindOne(context.TODO(), filter).Decode(&book)
-	if err != nil {
-		return &book, err
+	msr := collection.FindOne(context.TODO(), filter)
+	if msr != nil {
+		err := msr.Decode(&book)
+		if err != nil {
+			return &book, err
+		}
 	}
 
 	return &book, nil
