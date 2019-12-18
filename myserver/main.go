@@ -1,21 +1,21 @@
 package main
 
 import (
+	"github.com/gorilla/mux"
 	"log"
+	"myserver/restapi/handlers"
 	"net/http"
-	
-	"github.com/gorilla/handlers"
-	
-	"myserver/restapi"	
 )
 
 func main() {
-	router := restapi.NewRouter()
+	//Init Router
+	r := mux.NewRouter()
 
-	allowedOrigins := handlers.AllowedOrigins([]string{"*"})
-	allowedMethods := handlers.AllowedMethods([]string{"GET", "POST", "DELETE", "PUT"})
+	r.HandleFunc("/", handlers.GetBooks).Methods("GET")
+	r.HandleFunc("/{id}", handlers.GetBookByID).Methods("GET")
+	r.HandleFunc("/", handlers.CreateBook).Methods("POST")
+	r.HandleFunc("/{id}", handlers.UpdateBookByID).Methods("PUT")
+	r.HandleFunc("/{id}", handlers.DeleteBookByID).Methods("DELETE")
 
-	// launch server
-	log.Fatal(http.ListenAndServe(":9000",
-		handlers.CORS(allowedOrigins, allowedMethods)(router)))
+	log.Fatal(http.ListenAndServe(":9000", r))
 }
