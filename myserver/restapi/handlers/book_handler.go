@@ -119,7 +119,7 @@ func DeleteBookByID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	deleteResult, err := infrastructure.DeleteBook(id)
+	deleteResult, err := infrastructure.DeleteBookByID(id)
 	if err != nil {
 		getError(err, w)
 		return

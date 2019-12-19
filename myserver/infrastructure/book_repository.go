@@ -181,7 +181,7 @@ func UpdateBookByID(id primitive.ObjectID, book *domain.Book) error {
 	return nil
 }
 
-func DeleteBook(id primitive.ObjectID) (*mongo.DeleteResult, error) {
+func DeleteBookByID(id primitive.ObjectID) (*mongo.DeleteResult, error) {
 	collection := connectDB()
 
 	// prepare filter.
