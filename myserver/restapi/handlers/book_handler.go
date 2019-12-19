@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"myserver/domain"
 	"myserver/infrastructure"
@@ -44,6 +45,21 @@ func GetBookByID(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(book)
 }
 
+func GetBookByNamePublishingHouse(w http.ResponseWriter, r *http.Request) {
+	// set header.
+	w.Header().Set("Content-Type", "application/json")
+
+	// we get params with mux.
+	var params = mux.Vars(r)
+
+	book, err := infrastructure.GetBookByNamePublishingHouse(params["name"])
+	if err != nil {
+		getError(err, w)
+		return
+	}
+
+	json.NewEncoder(w).Encode(book)
+}
 func CreateBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -53,6 +69,8 @@ func CreateBook(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewDecoder(r.Body).Decode(&book)
 
 	// insert our book model.
+	fmt.Println(r.Body)
+	fmt.Println(&book)
 	result, err := infrastructure.CreateBook(&book)
 
 	if err != nil {

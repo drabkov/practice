@@ -13,6 +13,7 @@ func main() {
 
 	r.HandleFunc("/", handlers.GetBooks).Methods("GET")
 	r.HandleFunc("/{id}", handlers.GetBookByID).Methods("GET")
+	r.HandleFunc("/publishinghouse/{name}", handlers.GetBookByNamePublishingHouse).Methods("GET")
 	r.HandleFunc("/", handlers.CreateBook).Methods("POST")
 	r.HandleFunc("/{id}", handlers.UpdateBookByID).Methods("PUT")
 	r.HandleFunc("/{id}", handlers.DeleteBookByID).Methods("DELETE")
